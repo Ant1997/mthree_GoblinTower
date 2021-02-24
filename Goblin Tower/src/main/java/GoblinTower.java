@@ -9,6 +9,7 @@ public class GoblinTower {
         int gold = 0;
         int gameLevel = 0;
         int steps = 0;
+        int goblinKilled = 0;
 
         do{
             Hero h = new Hero();
@@ -104,6 +105,7 @@ public class GoblinTower {
 
                             if (g.getHealth() <= 0){
                                 System.out.println("\nGoblin fainted.");
+                                goblinKilled++;
                                 System.out.println("Congratulation! You've gained 2 gold!");
                                 gold = gold + 2;
                                 System.out.println("\nYour health is: " + h.getHealth() + "/" + h.getMaxHealth());
@@ -149,6 +151,9 @@ public class GoblinTower {
 
 
 
+            System.out.println("\n\nGame over..." +
+                                "\nGoblin killed: " + goblinKilled +
+                                "\nGame level: " + gameLevel);
 
             System.out.println("\nWould you like to continue playing (Gold remain the same) [yes|no]?:");
             String userResponse = userInput.nextLine();
@@ -156,6 +161,8 @@ public class GoblinTower {
             switch (userResponse){
                 case "yes":
                     playAgain = true;
+                    goblinKilled = 0;
+                    gameLevel = 0;
                     break;
                 case "no":
                     playAgain = false;
